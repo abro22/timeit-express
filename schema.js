@@ -1,28 +1,28 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 
-// //CREATE USER
-// const createUser = new mongoose.Schema({
+//CREATE USER
+const createUser = new mongoose.Schema({
 
-//     username: {
-//         required: true,
-//         type: String
-//     },
+    username: {
+        required: true,
+        type: String
+    },
 
-//     role: {
-//         required: true,
-//         type: String
+    role: {
+        required: true,
+        type: String
 
-//     },
+    },
 
-//     email: {
-//         required: true,
-//         type: String
+    email: {
+        required: true,
+        type: String
 
-//     }
-
-
-// })
+    }
 
 
-// module.exports = mongoose.model('Data', postsSchema)
+})
+
+
+module.exports = mongoose.model('Data', createUser)

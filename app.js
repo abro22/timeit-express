@@ -41,6 +41,14 @@ app.post("/createuser", queries.createUser)
 //SQL ROUTE
 app.get("/users/:id", queries.userById)
 
+app.post("/register", queries.registerUser)
+
+app.delete("/users/:id", queries.deleteUser)
+
+app.put("/users/:id", queries.updateUser)
+
+app.post('/login', queries.login)
+
 
 
 app.get("/", (req, res) => {
