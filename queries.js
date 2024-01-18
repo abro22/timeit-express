@@ -1,8 +1,8 @@
 const { model } = require("mongoose")
-const Model = require("./schema.js")
 const Pool = require('pg').Pool
 require('dotenv').config()
 
+const tokenManager = require('./tokenmanager.js')
 
 const pool = new Pool({
     user: process.env.USER,
@@ -12,34 +12,18 @@ const pool = new Pool({
     port: 5432
 })
 
-//MONGO- Post picture 
-async function createUser(req, res) {
-    const user = new Model({
-        username: req.body.username,
-        role: req.body.role,
-        email: req.body.email
-    })
-    console.log("Here")
-    const saveUser = await user.save()
-    res.status(200).json(saveUser)
-}
-
-
-
 //SQL
-async function userById(req, res) {
-    const userid = req.user
 
-    await pool.query('SELECT * FROM users WHERE id = $1', [userid], (error, results) => {
+async function getAllUsers(req, res) {
 
+    await pool.query('SELECT * FROM users', (error, results) => {
         if (error) {
             throw error
         }
-        res.status(200).json(results.rows)
 
+        res.status(200).json(results.rows)
     })
 }
-
 
 async function registerUser(req, res) {
     const username = req.body.username
@@ -89,10 +73,14 @@ async function login(req, res) {
     const email = req.body.email
     const password = req.body.password
 
+    console.log(email, password)
+
     await pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password], (error, results) => {
         if (error) {
             throw error
         }
+
+        console.log(results.rows)
 
         const token = tokenManager.generateToken(results.rows[0].id)
 
@@ -102,13 +90,28 @@ async function login(req, res) {
 
 }
 
+// async function profileById(req, res) {
+//     const userid = req.user
+
+//     await pool.query('SELECT * FROM users WHERE id = $1', [userid], (error, results) => {
+
+//         if (error) {
+//             throw error
+//         }
+
+
+//         res.status(200).json(results.rows)
+
+//     })
+// }
+
 module.exports = {
-    userById,
-    createUser,
+    // profileById,
     registerUser,
     deleteUser,
     updateUser,
-    login
+    login,
+    getAllUsers
 
 
 }

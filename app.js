@@ -36,10 +36,17 @@ database.once('connected', () => {
 })
 
 //MONGO ROUTE
-app.post("/createuser", queries.createUser)
+// app.post("/createuser", queries.createUser)
+
+
+
+
+
+
+app.get("/getusers", queries.getAllUsers)
 
 //SQL ROUTE
-app.get("/users/:id", queries.userById)
+// app.get("/users/:id", queries.userById)
 
 app.post("/register", queries.registerUser)
 
@@ -48,6 +55,17 @@ app.delete("/users/:id", queries.deleteUser)
 app.put("/users/:id", queries.updateUser)
 
 app.post('/login', queries.login)
+
+//tokenmanager.authenticateToken, 
+//add the token authentication with token manager 
+
+
+// app.get("/profile", queries.profileById)
+
+
+
+
+
 
 
 
