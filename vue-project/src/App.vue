@@ -7,4 +7,6 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView></RouterView>
 </template>
 
-<style scoped></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+</style>

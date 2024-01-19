@@ -90,6 +90,45 @@ async function login(req, res) {
 
 }
 
+async function clockin(req, res) {
+
+    await pool.query('INSERT INTO time(userid, clockin) VALUES ($1, NOW()) RETURNING id', [req.user], (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results.rows)
+        res.status(200).json(results.rows)
+
+    })
+}
+
+
+async function clockout(req, res) {
+    const clockid = req.body.clockid
+    await pool.query(`UPDATE time SET clockout = NOW() WHERE id = ${clockid}`, (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results.rows)
+        res.status(200).send(results.rows)
+
+    })
+}
+
+
+async function gettime(req, res) {
+    const userid = req.user
+    await pool.query('SELECT * FROM time WHERE userid = $1', [userid], (error, results) => {
+        if (error) {
+            throw error
+
+        }
+        res.status(200).json(results.rows)
+    })
+}
+
+
+
 // async function profileById(req, res) {
 //     const userid = req.user
 
@@ -111,7 +150,10 @@ module.exports = {
     deleteUser,
     updateUser,
     login,
-    getAllUsers
+    getAllUsers,
+    clockin,
+    clockout,
+    gettime
 
 
 }

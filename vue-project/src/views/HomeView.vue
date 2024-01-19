@@ -41,28 +41,55 @@ function login() {
 
 
 <template>
-  <div>
-    Time It
-  </div>
+  <div class="centerContainer">
+    <div id="container">
+      <div>
+        Time It
+      </div>
 
 
-  <div>
-    <img src="" alt="white gloves logo">
-  </div>
+      <div>
+        <img src="" alt="white gloves logo">
+      </div>
 
-  <div>
-    <button @click="login">Login</button>
+      <div>
+        <button @click="login">Login</button>
 
-    <button @click="$router.push('/register')">Register</button>
-  </div>
+        <button @click="$router.push('/register')">Register</button>
+      </div>
 
-  <div>
-    <input v-model="email" type="text" placeholder="email">
-    <input v-model="password" type="text" placeholder="password">
+      <div>
+        <input v-model="email" type="text" placeholder="email">
+        <input v-model="password" type="text" placeholder="password">
+      </div>
+    </div>
   </div>
 </template>
 
 
 
 
-<style scoped></style>
+<style scoped>
+#container {
+
+  font-family: "lemon";
+  height: 80vh;
+  width: 50vw;
+  background-color: #4169e1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+  border-radius: 30%;
+  border: 10px solid grey;
+}
+
+.centerContainer {
+  display: flex;
+  padding-top: 5%;
+
+
+  justify-content: center;
+}
+</style>

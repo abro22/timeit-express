@@ -14,7 +14,7 @@ function authenticateToken(req, res, next) {
 
     //value of header-authorization
     const token = req.get('Authorization')
-
+    console.log(token)
     if (token === null) {
         return res.status(401)
     }

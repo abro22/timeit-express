@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const queries = require('./queries.js')
 
 const app = express()
-// const tokenManager = require('./token-manager.js')
+const tokenManager = require('./tokenmanager.js')
 
 const cors = require('cors')
 
@@ -55,6 +55,12 @@ app.delete("/users/:id", queries.deleteUser)
 app.put("/users/:id", queries.updateUser)
 
 app.post('/login', queries.login)
+
+app.post("/clockin", tokenManager.authenticateToken, queries.clockin)
+
+app.post("/clockout", tokenManager.authenticateToken, queries.clockout)
+
+app.get("/gettime", tokenManager.authenticateToken, queries.gettime)
 
 //tokenmanager.authenticateToken, 
 //add the token authentication with token manager 

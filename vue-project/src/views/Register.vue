@@ -41,26 +41,56 @@ function register() {
 </script>
 
 <template>
-    <h1>Register</h1>
+    <div class="centerContainer">
+        <div id="container">
+            <h1>Register</h1>
 
-    <h3>Time It</h3>
+            <h3>Time It</h3>
 
-    <div>
-        <img src="" alt="white gloves logo">
-    </div>
+            <div>
+                <img src="" alt="white gloves logo">
+            </div>
 
-    <h1>Create User</h1>
-    <div>
+            <h1>Create User</h1>
+            <div>
 
-        <input v-model="email" type="text" placeholder="email">
-        <input v-model="username" type="text" placeholder="username">
-        <input v-model="password" type="text" placeholder="password">
+                <input v-model="email" type="text" placeholder="email">
+                <input v-model="username" type="text" placeholder="username">
+                <input v-model="password" type="text" placeholder="password">
 
 
 
-        <button @click="register">Register</button>
+                <button @click="register">Register</button>
 
-        <button @click="$router.push('/')">Login</button>
+                <button @click="$router.push('/')">Login</button>
 
+            </div>
+
+        </div>
     </div>
 </template>
+
+<style>
+#container {
+
+    font-family: "lemon";
+    height: 80vh;
+    width: 50vw;
+    background-color: #4169e1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center;
+    border-radius: 30%;
+    border: 10px solid grey;
+}
+
+.centerContainer {
+    display: flex;
+    padding-top: 5%;
+
+
+    justify-content: center;
+}
+</style>
