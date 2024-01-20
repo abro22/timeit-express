@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 
 let clockid = ""
 
@@ -54,28 +55,38 @@ function clockout() {
     }
 }
 
+let profilepic = ref("")
+
+fetch('http://localhost:3000/getpic', {
+    headers: { "Content-Type": "application/json", "Authorization": document.cookie },
+
+})
+    .then(response => {
+        if (response.status === 200) {
+            return response.json()
+        } else {
+            alert("Something went wrong, try again!")
+        }
+    })
+
+    .then(json => {
+        console.log(json)
+        profilepic.value = json[0].profilepic
+    })
 
 
-function getTimeStamp() {
-    var now = new Date();
-    return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now.getHours() + ':'
-        + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
-}
-
-function setTime() {
-    document.getElementById('punch').textContent = getTimeStamp();
-}
 
 </script>
 
 <template>
     <div class="centerContainer">
         <div id="container">
+
+            <img :src=profilepic>
+
             <h1>Time It</h1>
 
-            <div>
-                <img src="" alt="white gloves logo">
-            </div>
+
 
             <div>
                 <button @click="$router.push('/profile')">Profile</button>

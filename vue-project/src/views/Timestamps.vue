@@ -19,21 +19,18 @@ fetch('http://localhost:3000/gettime', {
 
 </script>
 
-<template>
-    <div id="background">
+<template  >
+    <div class="background">
 
 
-        <div class="clockPosition">
-            <img class="pinkClock" src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png" alt="pink clock">
-            <img class="blueClock" src="https://cdn-icons-png.flaticon.com/512/1584/1584942.png" alt="blue clock">
-        </div>
+        <!-- <div class="clockPosition"> -->
+        <img class="pinkClock" src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png" alt="pink clock">
+        <img class="blueClock" src="https://cdn-icons-png.flaticon.com/512/1584/1584942.png" alt="blue clock">
+
 
 
         <div class="centerContainer">
             <div id="container">
-                <div>
-                    <img src="" alt="white gloves logo">
-                </div>
 
                 <div class="timestamp">
 
@@ -109,20 +106,19 @@ fetch('http://localhost:3000/gettime', {
 
 }
 
-#clockPosition {
+/* #clockPosition {
     display: flex;
     flex-direction: row;
 
 
-}
+} */
 
-#background {
+.background {
     background-color: cornflowerblue;
     height: 100%;
 
-
-
 }
+
 
 
 h1 {
@@ -165,25 +161,7 @@ h1 {
 img {
     height: 5rem;
     width: 5rem;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-}
 
-table {
-    border: 2px solid whitesmoke;
-    border-collapse: collapse;
-    width: 500px;
-}
-
-/* tr {border: 2px solid green;} */
-
-td {
-    border: 2px solid whitesmoke;
-}
-
-th {
-    border: 2px solid whitesmoke;
 }
 
 #container {
@@ -251,29 +229,26 @@ button {
 
 }
 
-@keyframes glow {
-
-    0%,
-    100% {
-        text-shadow: 0 0 40px red;
-    }
-
-    25% {
-        text-shadow: 0 0 45px red;
-    }
-
-    50% {
-        text-shadow: 0 0 50px red;
-    }
-
-    75% {
-        text-shadow: 0 0 55px red;
-    }
-}
 
 
 .big-btn {
     width: 80px;
     height: 40px;
+}
+
+table {
+    border: 2px solid whitesmoke;
+    border-collapse: collapse;
+    width: 500px;
+}
+
+/* tr {border: 2px solid green;} */
+
+td {
+    border: 2px solid whitesmoke;
+}
+
+th {
+    border: 2px solid whitesmoke;
 }
 </style>

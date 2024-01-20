@@ -35,43 +35,24 @@ database.once('connected', () => {
     console.log("MongoDB Connected")
 })
 
-//MONGO ROUTE
-// app.post("/createuser", queries.createUser)
 
+// app.get("/getusers", queries.getAllUsers)
 
+// app.post("/register", queries.registerUser)
 
+// app.delete("/deleteuser/:id", tokenManager.authenticateToken, queries.deleteUser)
 
-
-
-app.get("/getusers", queries.getAllUsers)
-
-//SQL ROUTE
-// app.get("/users/:id", queries.userById)
-
-app.post("/register", queries.registerUser)
-
-app.delete("/users/:id", queries.deleteUser)
-
-app.put("/users/:id", queries.updateUser)
+// app.put("/updateuser/:id", tokenManager.authenticateToken, queries.updateUser)
 
 app.post('/login', queries.login)
 
 app.post("/clockin", tokenManager.authenticateToken, queries.clockin)
 
+app.post("/postpic", tokenManager.authenticateToken, queries.postPic)
+app.get("/getpic", tokenManager.authenticateToken, queries.getPic)
 app.post("/clockout", tokenManager.authenticateToken, queries.clockout)
 
 app.get("/gettime", tokenManager.authenticateToken, queries.gettime)
-
-//tokenmanager.authenticateToken, 
-//add the token authentication with token manager 
-
-
-// app.get("/profile", queries.profileById)
-
-
-
-
-
 
 
 

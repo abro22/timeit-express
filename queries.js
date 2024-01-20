@@ -127,6 +127,36 @@ async function gettime(req, res) {
     })
 }
 
+async function postPic(req, res) {
+
+    let profilepic = req.body.profilepic
+    let userid = req.user
+
+    await pool.query('UPDATE users SET profilepic = $1 WHERE id = $2', [profilepic, userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results.rows)
+        res.status(200).json(results.rows)
+
+    })
+}
+
+async function getPic(req, res) {
+
+    let userid = req.user
+
+    await pool.query('SELECT profilepic FROM users WHERE id = $1', [userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results.rows)
+        res.status(200).json(results.rows)
+
+    })
+}
+
+
 
 
 // async function profileById(req, res) {
@@ -153,7 +183,9 @@ module.exports = {
     getAllUsers,
     clockin,
     clockout,
-    gettime
+    gettime,
+    postPic,
+    getPic
 
 
 }

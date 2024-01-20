@@ -13,7 +13,7 @@ function register() {
         "username": username.value
     }
 
-    fetch("http://localhost:3000/users",
+    fetch("http://localhost:3000/register",
         {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(reqBody),
@@ -83,7 +83,7 @@ function register() {
 
     align-items: center;
     border-radius: 30%;
-    border: 10px solid grey;
+    border: 10px solid black;
 }
 
 .centerContainer {

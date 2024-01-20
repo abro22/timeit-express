@@ -4,8 +4,12 @@ import RegisterView from '../views/Register.vue'
 import ProfileView from '../views/Profile.vue'
 import WelcomeView from '../views/Welcome.vue'
 import SettingsView from '../views/Settings.vue'
-import TimeView from '../views/Time.vue'
 import TimestampView from '../views/Timestamps.vue'
+
+
+
+// import DeleteView from '../views/Delete.vue'
+// import UpdateView from '../views/Update.vue'
 
 
 const router = createRouter({
@@ -43,15 +47,20 @@ const router = createRouter({
       component: SettingsView
     },
     {
-      path: "/time",
-      name: 'time',
-      component: TimeView
-    },
-    {
       path: "/timestamp",
       name: 'timestamp',
       component: TimestampView
     }
+    // {
+    //   path: "/delete",
+    //   name: 'delete',
+    //   component: DeleteView
+    // },
+    // {
+    //   path: "/update",
+    //   name: 'update',
+    //   component: UpdateView
+    // }
 
   ]
 })
