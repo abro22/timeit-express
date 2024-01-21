@@ -1,5 +1,12 @@
 <script setup>
 
+import { store } from '../store.js';
+import { defineModel } from 'vue';
+
+const email = defineModel("email")
+const username = defineModel("username")
+const password = defineModel("password")
+
 // function myFunction() {
 //     document.getElementById("myDropdown").classList.toggle("show");
 // }
@@ -15,6 +22,32 @@
 //         }
 //     }
 // }
+
+function updateUser() {
+    if (username.value != undefined) store.username = username.value
+    if (email.value != undefined) store.email = email.value
+    if (password.value != undefined) store.password = password.value
+
+    fetch('http://localhost:3000/updateuser', {
+        headers: { "Content-Type": "application/json", "Authorization": document.cookie },
+        body: JSON.stringify({ "username": store.username, "password": store.password, "email": store.email }),
+        method: "PUT"
+    })
+        .then(response => {
+            if (response.status === 200) {
+                alert("Account has been updated!")
+
+                console.log(response)
+                return response.json()
+            } else {
+                alert("Something went wrong, try again!")
+            }
+        })
+
+        .catch(error => {
+            console.log(error)
+        })
+}
 
 
 
@@ -34,10 +67,12 @@
             <div>
                 <form name="role" id="role1" action="/action_page.php">
                     <p>Role</p>
+
                     <select name="role" id="role1">
-                        <option value="" selected="selected">Cleaner</option>
-                        <option value="" selected="selected">Maintenace</option>
+                        <option value="" selected>Cleaner</option>
+                        <option value="">Maintenace</option>
                     </select>
+
                 </form>
                 <br>
                 <input type="checkbox">Text Reminders
@@ -48,9 +83,17 @@
 
 
             </div>
+
+
+            <input v-model="email" type="text" :placeholder="store.email" maxlength="30" minlength="10" value="">
+            <input v-model="username" type="text" :placeholder="store.username" maxlength="30" minlength="10" value="">
+            <input v-model="password" type="text" :placeholder="store.password" maxlength="30" minlength="10" value="">
+
             <br>
 
+            <button @click="updateUser">Update User</button>
 
+            <button @click="$router.push('/delete')">Delete User</button>
 
             <button @click="$router.push('/welcome')">Back</button>
 

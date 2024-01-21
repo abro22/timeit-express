@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 
+
 let imageURL = ref("")
 
 function upload() {
@@ -36,10 +37,15 @@ function upload() {
 <template>
     <div id="background">
 
-        <h1 class="timeitposition header">Time It</h1>
+        <!-- <h1 class="timeitposition header">Time It</h1> -->
 
         <div class="centerContainer">
 
+            <div class="clockButton">
+                <img class="pinkClock" src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png" alt="pink clock">
+                <br><br>
+                <img class="blueClock" src="https://cdn-icons-png.flaticon.com/512/1584/1584942.png" alt="blue clock">
+            </div>
 
             <div class="container">
 
@@ -48,22 +54,25 @@ function upload() {
                 </div>
 
                 <div>
-                    <p>Role</p>
-                    <p id="role"></p>
-                    <br>
+
+
+                    <br><br>
 
                     <div>
                         <img :src=imageURL class="image">
                     </div>
 
-
+                    <br>
+                    <br>
                     <div class="inputPosition">
                         <input v-model="imageURL" type="text" placeholder="image url" id="image-input">
                         <label for="image-input"></label>
                     </div>
                     <br>
+                    <div class="buttonPosition">
+                        <button @click="upload" class="buttonColor big-btn">Update</button>
 
-                    <button @click="upload" class="buttonColor big-btn">Update</button>
+                    </div>
                 </div>
                 <br>
                 <br>
@@ -71,54 +80,106 @@ function upload() {
 
                 <div class="buttonPosition">
 
-                    <button class="buttonColor big-btn" @click="$router.push('/welcome')">Back</button>
+                    <button class="big-btn" @click="$router.push('/welcome')">Back</button>
 
-                    <button class="buttonColor big-btn" @click="$router.push('/')">Logout</button>
+                    <button class="big-btn" @click="$router.push('/')">Logout</button>
                 </div>
 
             </div>
 
         </div>
+
     </div>
 </template>
 
 <style>
+/* .Footer {
+    background-color: lightpink;
+    height: 3rem;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+
+
+} */
+
+.clockButton {
+    display: flex;
+    flex-direction: column;
+    float: left;
+
+}
+
+.pinkClock {
+    padding-top: 100px;
+    height: 15rem;
+    width: 15rem;
+    transform:
+        perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+    /* opacity: 0.5; */
+    transition: 0.2s ease all;
+
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+        /* filter: drop-shadow(); */
+        opacity: 1;
+    }
+
+    padding-right: 10%;
+
+}
+
+.blueClock {
+    padding-right: 80px;
+    padding-top: 40px;
+    height: 15rem;
+    width: 15rem;
+    transform:
+        perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+    /* opacity: 0.5; */
+    transition: 0.2s ease all;
+
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+        /* filter: drop-shadow(); */
+        opacity: 1;
+
+
+    }
+
+}
+
+
+
+
 .inputPosition {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.imgage {
-    height: 15rem;
-    width: 15rem;
-    display: flex;
-    justify-content: space-evenly;
+img {
+
+    display: inline-block;
+
 }
 
-.timeitposition {
-    display: flex;
-    flex-direction: row;
+.image {
+    border: solid 5px #f0edaa;
+    height: 10rem;
+
+    width: 10rem;
 }
+
 
 #background {
-    background-color: cornflowerblue;
+    background-color: lightseagreen;
     height: 100%;
-
-
-}
-
-.header {
-
-    display: flex;
-    flex-direction: row;
-    padding: 15px;
-    animation: glow 10s ease-in infinite;
-    width: 100%;
-
-    font: 60px lemon;
-    text-transform: uppercase;
-    color: #f0edaa;
 
 
 }
@@ -159,26 +220,21 @@ function upload() {
 
 .container {
 
+    margin-bottom: 20%;
+    box-shadow: 10px 10px lightpink;
+
     font-family: "lemon";
     height: 80vh;
     width: 50vw;
     background-color: #4169e1;
-    display: flex;
+    display: flex inline;
     flex-direction: column;
     justify-content: center;
 
     align-items: center;
-    border-radius: 30%;
-    border: 10px solid black;
+    border-radius: 20%;
+    border: 5px solid black;
     background-image: url(https://cdn.pixabay.com/photo/2018/03/13/11/26/clock-3222267_1280.jpg);
-}
-
-.centerContainer {
-    display: flex;
-    padding-top: 5%;
-
-
-    justify-content: center;
 }
 
 
@@ -189,15 +245,6 @@ function upload() {
 
     align-items: center;
     justify-content: center;
-}
-
-.buttonColor {
-
-    background-color: cornflowerblue;
-    /* background-image: linear-gradient(to right, #f0edaa, pink); */
-    text-align: center;
-    border-radius: 5px;
-    border: cornflowerblue solid 2px;
 }
 
 .buttonPosition {
@@ -212,6 +259,11 @@ button {
     text-transform: uppercase;
 
     color: #f0edaa;
+
+    background-color: cornflowerblue;
+
+    text-align: center;
+    border-radius: 5px;
 }
 
 .big-btn {

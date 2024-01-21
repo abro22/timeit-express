@@ -7,11 +7,6 @@ import SettingsView from '../views/Settings.vue'
 import TimestampView from '../views/Timestamps.vue'
 
 
-
-// import DeleteView from '../views/Delete.vue'
-// import UpdateView from '../views/Update.vue'
-
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -51,18 +46,11 @@ const router = createRouter({
       name: 'timestamp',
       component: TimestampView
     }
-    // {
-    //   path: "/delete",
-    //   name: 'delete',
-    //   component: DeleteView
-    // },
-    // {
-    //   path: "/update",
-    //   name: 'update',
-    //   component: UpdateView
-    // }
 
   ]
 })
 
 export default router
+
+
+

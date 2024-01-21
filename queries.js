@@ -25,6 +25,18 @@ async function getAllUsers(req, res) {
     })
 }
 
+async function getUserInfo(req, res) {
+
+    await pool.query('SELECT * FROM users WHERE userid = ', (error, results) => {
+        if (error) {
+            throw error
+        }
+
+        res.status(200).json(results.rows)
+    })
+}
+
+
 async function registerUser(req, res) {
     const username = req.body.username
     const password = req.body.password
@@ -80,12 +92,17 @@ async function login(req, res) {
             throw error
         }
 
-        console.log(results.rows)
-
         const token = tokenManager.generateToken(results.rows[0].id)
 
-        res.status(200).json(token)
+        const user = results.rows
+        res.status(200).json({
+            "token": token,
+            "user": user
+        })
     })
+
+
+
 
 
 }
@@ -157,25 +174,28 @@ async function getPic(req, res) {
 }
 
 
+async function updateUser(req, res) {
+
+    let userid = req.user
+    let username = req.body.username
+    let password = req.body.password
+    let email = req.body.email
+    // let role = req.body.role
+
+    await pool.query('UPDATE users SET username = $1, password = $2, email = $3 WHERE id = $4 ', [username, password, email, userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results.rows)
+        res.status(200).json(results.rows)
+
+    })
+}
 
 
-// async function profileById(req, res) {
-//     const userid = req.user
-
-//     await pool.query('SELECT * FROM users WHERE id = $1', [userid], (error, results) => {
-
-//         if (error) {
-//             throw error
-//         }
-
-
-//         res.status(200).json(results.rows)
-
-//     })
-// }
 
 module.exports = {
-    // profileById,
+
     registerUser,
     deleteUser,
     updateUser,

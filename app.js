@@ -40,9 +40,9 @@ database.once('connected', () => {
 
 // app.post("/register", queries.registerUser)
 
-// app.delete("/deleteuser/:id", tokenManager.authenticateToken, queries.deleteUser)
+app.delete("/deleteuser", tokenManager.authenticateToken, queries.deleteUser)
 
-// app.put("/updateuser/:id", tokenManager.authenticateToken, queries.updateUser)
+app.put("/updateuser", tokenManager.authenticateToken, queries.updateUser)
 
 app.post('/login', queries.login)
 

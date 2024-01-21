@@ -79,51 +79,57 @@ fetch('http://localhost:3000/getpic', {
 </script>
 
 <template>
-    <div class="centerContainer">
-        <div id="container">
+    <div class="background">
+        <div class="centerContainer">
+            <div id="container">
 
-            <img :src=profilepic>
+                <img :src=profilepic>
 
-            <h1>Time It</h1>
+                <h1>Time It</h1>
 
 
 
-            <div>
-                <button @click="$router.push('/profile')">Profile</button>
+                <div>
+                    <button @click="$router.push('/profile')">Profile</button>
+                </div>
+
+
+                <div>
+                    <h1>Menu</h1>
+                    <button @click="$router.push('/settings')">Settings</button>
+                    <button @click="$router.push('/timestamp')">Timestamps</button>
+                </div>
+
+                <h3>Welcome</h3>
+                <br>
+
+                <div class="button">
+                    <button class="buttonColor" @click="clockin()">Clock In</button>
+                    <button class="buttonColor" @click="clockout()">Clock Out</button>
+                </div>
+                <div>
+                    <p id="punch"></p>
+                </div>
+                <br>
+
+                <div>
+                    <button @click="$router.push('/')">Logout</button>
+                </div>
+
+
+                <h3>Date</h3>
+
+                <h3>Time</h3>
             </div>
-
-
-            <div>
-                <h1>Menu</h1>
-                <button @click="$router.push('/settings')">Settings</button>
-                <button @click="$router.push('/timestamp')">Timestamps</button>
-            </div>
-
-            <h3>Welcome</h3>
-            <br>
-
-            <div class="button">
-                <button class="buttonColor" @click="clockin()">Clock In</button>
-                <button class="buttonColor" @click="clockout()">Clock Out</button>
-            </div>
-            <div>
-                <p id="punch"></p>
-            </div>
-            <br>
-
-            <div>
-                <button @click="$router.push('/')">Logout</button>
-            </div>
-
-
-            <h3>Date</h3>
-
-            <h3>Time</h3>
         </div>
     </div>
 </template>
 
 <style scoped>
+.background {
+    background-color: lightpink;
+}
+
 .button {
     display: flex;
     flex-direction: row;
