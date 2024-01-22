@@ -49,7 +49,9 @@ function login() {
 
 <template>
   <div class="background ">
+
     <div class="centerContainer">
+
       <div class="container">
 
         <div class="headerStyle">
@@ -87,7 +89,7 @@ function login() {
   animation: glow 10s ease-in infinite;
   width: 70%;
   /* padding: 20px; */
-  font: 5rem lemon;
+  font: 6rem lemon;
   text-transform: uppercase;
   color: #f0edaa
 }
@@ -120,7 +122,7 @@ function login() {
 
 
   margin-bottom: 20%;
-  box-shadow: 10px 10px lightpink;
+  box-shadow: 15px 15px black;
 
   font-family: "lemon";
   height: 80vh;
@@ -132,7 +134,7 @@ function login() {
 
   align-items: center;
   border-radius: 20%;
-  border: 5px solid black;
+  border: 6px solid black;
   background-image: url(https://cdn.pixabay.com/photo/2018/03/13/11/26/clock-3222267_1280.jpg);
 }
 
@@ -156,7 +158,7 @@ button {
 
   color: white;
 
-  background-color: lightpink;
+  background-color: #4169e1;
   /* background-image: linear-gradient(to right, #f0edaa, pink); */
   text-align: center;
   border-radius: 5px;

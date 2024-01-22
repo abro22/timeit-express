@@ -36,11 +36,7 @@ database.once('connected', () => {
 })
 
 
-// app.get("/getusers", queries.getAllUsers)
-
-// app.post("/register", queries.registerUser)
-
-app.delete("/deleteuser", tokenManager.authenticateToken, queries.deleteUser)
+// app.delete("/deleteuser", tokenManager.authenticateToken, queries.deleteUser)
 
 app.put("/updateuser", tokenManager.authenticateToken, queries.updateUser)
 

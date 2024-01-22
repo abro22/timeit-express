@@ -81,32 +81,38 @@ fetch('http://localhost:3000/getpic', {
 <template>
     <div class="background">
         <div class="centerContainer">
-            <div id="container">
+            <div class="container">
 
-                <img :src=profilepic>
+                <img :src=profilepic class="profilepic">
 
-                <h1>Time It</h1>
+                <div class="center">
+                    <h1 class="headerStyle">Welcome</h1>
 
 
 
-                <div>
-                    <button @click="$router.push('/profile')">Profile</button>
+                    <div class="button">
+                        <button @click="$router.push('/profile')">Profile</button>
+
+
+
+
+
+                        <button @click="$router.push('/settings')">Settings</button>
+                        <button @click="$router.push('/timestamp')">Timestamps</button>
+                    </div>
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br><br>
+
+                    <div class="clockButtons">
+                        <button @click="clockin()">Clock In</button>
+                        <button @click="clockout()">Clock Out</button>
+                    </div>
                 </div>
 
-
-                <div>
-                    <h1>Menu</h1>
-                    <button @click="$router.push('/settings')">Settings</button>
-                    <button @click="$router.push('/timestamp')">Timestamps</button>
-                </div>
-
-                <h3>Welcome</h3>
-                <br>
-
-                <div class="button">
-                    <button class="buttonColor" @click="clockin()">Clock In</button>
-                    <button class="buttonColor" @click="clockout()">Clock Out</button>
-                </div>
                 <div>
                     <p id="punch"></p>
                 </div>
@@ -116,52 +122,113 @@ fetch('http://localhost:3000/getpic', {
                     <button @click="$router.push('/')">Logout</button>
                 </div>
 
-
+                <!-- 
                 <h3>Date</h3>
 
-                <h3>Time</h3>
+                <h3>Time</h3> -->
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-.background {
-    background-color: lightpink;
-}
-
-.button {
+.center {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 }
 
-.buttonColor {
+.headerStyle {
 
+    animation: glow 10s ease-in infinite;
+    width: 70%;
+    font: 4rem lemon;
+    text-transform: uppercase;
+    color: #f0edaa
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 40px red;
+    }
+
+    25% {
+        text-shadow: 0 0 45px red;
+    }
+
+    50% {
+        text-shadow: 0 0 50px red;
+    }
+
+    75% {
+        text-shadow: 0 0 55px red;
+    }
+}
+
+.profilepic {
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    /* padding-left: 60%; */
+    border-radius: 50px;
+    border: 4px solid white;
+    justify-content: right;
+
+}
+
+.background {
+    background-color: lightseagreen;
+    height: 100%;
+}
+
+button {
+    display: flex;
+
+    justify-content: space-around;
     color: white;
-    background-image: linear-gradient(to right, lightblue, navy, grey);
+
     text-align: center;
     border-radius: 5px;
+    background-color: #4169e1;
+    width: fit-content;
+    height: 40px;
+    border: 2px solid black;
 
 
 }
 
-#container {
+.clockButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 20%;
+    width: fit-content;
 
-    /* font-family: "lemon"; */
+}
+
+
+
+.container {
+    margin-bottom: 20%;
+    box-shadow: 15px 15px black;
+    font-family: "lemon";
     height: 80vh;
     width: 50vw;
-    background-color: #4169e1;
+    /* background-color: #4169e1; */
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     align-items: center;
-    border-radius: 30%;
-    border: 10px solid lightgray;
+    border-radius: 20%;
+    border: 6px solid black;
+    background-image: url(https://cdn.pixabay.com/photo/2018/03/13/11/26/clock-3222267_1280.jpg);
 }
 
 .centerContainer {
     display: flex;
+
     padding-top: 5%;
 
 

@@ -7,21 +7,6 @@ const email = defineModel("email")
 const username = defineModel("username")
 const password = defineModel("password")
 
-// function myFunction() {
-//     document.getElementById("myDropdown").classList.toggle("show");
-// }
-// window.onclick = function (event) {
-//     if (!event.target.matches('.dropbtn')) {
-//         var dropdowns = document.getElementsByClassName("dropdown-content");
-//         var i;
-//         for (i = 0; i < dropdowns.length; i++) {
-//             var openDropdown = dropdowns[i];
-//             if (openDropdown.classList.contains('show')) {
-//                 openDropdown.classList.remove('show');
-//             }
-//         }
-//     }
-// }
 
 function updateUser() {
     if (username.value != undefined) store.username = username.value
@@ -93,7 +78,7 @@ function updateUser() {
 
             <button @click="updateUser">Update User</button>
 
-            <button @click="$router.push('/delete')">Delete User</button>
+            <!-- <button @click="$router.push('/delete')">Delete User</button> -->
 
             <button @click="$router.push('/welcome')">Back</button>
 

@@ -25,16 +25,16 @@ async function getAllUsers(req, res) {
     })
 }
 
-async function getUserInfo(req, res) {
+// async function getUserInfo(req, res) {
 
-    await pool.query('SELECT * FROM users WHERE userid = ', (error, results) => {
-        if (error) {
-            throw error
-        }
+//     await pool.query('SELECT * FROM users WHERE userid = ', (error, results) => {
+//         if (error) {
+//             throw error
+//         }
 
-        res.status(200).json(results.rows)
-    })
-}
+//         res.status(200).json(results.rows)
+//     })
+// }
 
 
 async function registerUser(req, res) {
@@ -53,15 +53,16 @@ async function registerUser(req, res) {
 
 }
 
-async function deleteUser(req, res) {
-    const userid = req.user
-    await pool.query("DELETE FROM users WHERE id = $1", [userid], (error, results) => {
-        if (error) {
-            throw error
-        }
-    })
-    res.status(200).send(`User ID: ${userid} has been deleted`)
-}
+// async function deleteUser(req, res) {
+//     const userid = req.user
+//     await pool.query("DELETE FROM users WHERE id = $1", [userid], (error, results) => {
+//         if (error) {
+//             throw error
+//         }
+//     })
+//     res.status(200).send(`User ID: ${userid} has been deleted`)
+// }
+
 
 async function updateUser(req, res) {
 
@@ -197,7 +198,7 @@ async function updateUser(req, res) {
 module.exports = {
 
     registerUser,
-    deleteUser,
+    // deleteUser,
     updateUser,
     login,
     getAllUsers,

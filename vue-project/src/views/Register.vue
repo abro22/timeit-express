@@ -54,7 +54,7 @@ function register() {
                 <h1 class="header2">Create User</h1>
 
 
-                <div>
+                <div class="inputPosition">
 
                     <input v-model="email" type="text" placeholder="email">
                     <input v-model="username" type="text" placeholder="username">
@@ -75,6 +75,23 @@ function register() {
 </template>
 
 <style>
+.button {
+    width: 100%;
+
+    font: 20px lemon;
+    text-transform: uppercase;
+
+    color: white;
+
+
+
+    text-align: center;
+    border-radius: 5px;
+    width: fit-content;
+    height: 40px;
+
+}
+
 .headerStyle {
 
     display: flex;
@@ -94,7 +111,7 @@ function register() {
     justify-content: center;
     animation: glow 10s ease-in infinite;
     width: 70%;
-    font: 2rem lemon;
+    font: 2.5rem lemon;
     text-transform: uppercase;
     color: #f0edaa;
 }
@@ -123,22 +140,22 @@ function register() {
 
 .container {
 
-
     margin-bottom: 20%;
-    box-shadow: 10px 10px lightpink;
+
 
     font-family: "lemon";
     height: 80vh;
     width: 50vw;
 
-    display: flex inline;
+    display: flex;
     flex-direction: column;
     justify-content: center;
 
     align-items: center;
     border-radius: 20%;
-    border: 5px solid black;
+    border: 6px solid black;
     background-image: url(https://cdn.pixabay.com/photo/2018/03/13/11/26/clock-3222267_1280.jpg);
+    box-shadow: 15px 15px black;
 }
 
 
@@ -151,21 +168,6 @@ function register() {
 
 }
 
-button {
-
-
-    width: 100%;
-
-    font: 20px lemon;
-    text-transform: uppercase;
-
-    text-align: center;
-    border-radius: 5px;
-    width: fit-content;
-    height: 40px;
-
-
-}
 
 .buttonPosition {
     display: flex;
@@ -179,8 +181,8 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 20%;
+
 
 }
-
-/* background-image: linear-gradient(to right, #f0edaa, pink); */
 </style>

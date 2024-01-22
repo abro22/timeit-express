@@ -28,10 +28,6 @@ function upload() {
 }
 
 
-
-
-
-
 </script>
 
 <template>
@@ -43,8 +39,10 @@ function upload() {
 
             <div class="clockButton">
                 <img class="pinkClock" src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png" alt="pink clock">
+                <h3 class="pinkWord">Timestamps</h3>
                 <br><br>
                 <img class="blueClock" src="https://cdn-icons-png.flaticon.com/512/1584/1584942.png" alt="blue clock">
+                <h3 class="blueWord">Messages</h3>
             </div>
 
             <div class="container">
@@ -93,16 +91,30 @@ function upload() {
 </template>
 
 <style>
-/* .Footer {
-    background-color: lightpink;
-    height: 3rem;
-    width: 100vw;
-    position: fixed;
-    bottom: 0;
-    margin: 0;
+.pinkWord {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: glow 10s ease-in infinite;
+    width: 70%;
+    padding-left: 3%;
+    font: 17px lemon;
+    text-transform: uppercase;
+    color: lightpink
+}
 
+.blueWord {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: glow 10s ease-in infinite;
+    width: 70%;
 
-} */
+    font: 17px lemon;
+    text-transform: uppercase;
+    color: lightskyblue
+}
+
 
 .clockButton {
     display: flex;
@@ -133,7 +145,7 @@ function upload() {
 }
 
 .blueClock {
-    padding-right: 80px;
+    padding-right: 85px;
     padding-top: 40px;
     height: 15rem;
     width: 15rem;
@@ -170,7 +182,8 @@ img {
 }
 
 .image {
-    border: solid 5px #f0edaa;
+    background-color: white;
+    border: solid 10px #f0edaa;
     height: 10rem;
 
     width: 10rem;
@@ -194,7 +207,18 @@ img {
     font: 35px lemon;
     text-transform: uppercase;
     color: #f0edaa;
+    transform:
+        perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+    /* opacity: 0.5; */
+    transition: 0.2s ease all;
 
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+        /* filter: drop-shadow(); */
+        opacity: 1;
+    }
 }
 
 @keyframes glow {
@@ -221,7 +245,7 @@ img {
 .container {
 
     margin-bottom: 20%;
-    box-shadow: 10px 10px lightpink;
+    box-shadow: 15px 15px black;
 
     font-family: "lemon";
     height: 80vh;
@@ -233,19 +257,19 @@ img {
 
     align-items: center;
     border-radius: 20%;
-    border: 5px solid black;
+    border: 6px solid black;
     background-image: url(https://cdn.pixabay.com/photo/2018/03/13/11/26/clock-3222267_1280.jpg);
 }
 
 
 
-.headerStyle {
+/* .headerStyle {
     display: flex;
     flex-direction: columns;
 
     align-items: center;
     justify-content: center;
-}
+} */
 
 .buttonPosition {
     display: flex;
@@ -258,12 +282,15 @@ button {
     font: 20px lemon;
     text-transform: uppercase;
 
-    color: #f0edaa;
+    color: white;
 
-    background-color: cornflowerblue;
+    background-color: #4169e1;
 
     text-align: center;
     border-radius: 5px;
+    width: fit-content;
+    height: 40px;
+    border: 2px solid black;
 }
 
 .big-btn {
