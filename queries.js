@@ -1,5 +1,6 @@
 const { model } = require("mongoose")
 const Pool = require('pg').Pool
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config()
 
 const tokenManager = require('./tokenmanager.js')
@@ -53,15 +54,20 @@ async function registerUser(req, res) {
 
 }
 
-// async function deleteUser(req, res) {
-//     const userid = req.user
-//     await pool.query("DELETE FROM users WHERE id = $1", [userid], (error, results) => {
-//         if (error) {
-//             throw error
-//         }
-//     })
-//     res.status(200).send(`User ID: ${userid} has been deleted`)
-// }
+async function deleteUser(req, res) {
+    const userid = req.user
+    await pool.query("DELETE FROM time WHERE userid = $1", [userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+    })
+    await pool.query("DELETE FROM users WHERE id = $1", [userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+    })
+    res.status(200).send(`User ID: ${userid} has been deleted`)
+}
 
 
 async function updateUser(req, res) {
@@ -135,8 +141,9 @@ async function clockout(req, res) {
 
 
 async function gettime(req, res) {
+
     const userid = req.user
-    await pool.query('SELECT * FROM time WHERE userid = $1', [userid], (error, results) => {
+    await pool.query("SELECT to_char(clockin, 'DAY, DD MONTH YYYY HH:MM:SS') as clockin, to_char(clockout, 'DAY, DD MONTH YYYY HH:MM:SS') as clockout FROM TIME WHERE userid = $1", [userid], (error, results) => {
         if (error) {
             throw error
 
@@ -144,6 +151,7 @@ async function gettime(req, res) {
         res.status(200).json(results.rows)
     })
 }
+
 
 async function postPic(req, res) {
 
@@ -195,10 +203,55 @@ async function updateUser(req, res) {
 
 
 
+async function email(req, res) {
+    let userid = req.user
+    let userResults
+
+    await pool.query('SELECT * FROM users WHERE id = $1', [userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+        userResults = results
+    })
+    await pool.query("SELECT to_char(clockin, 'DAY, DD MONTH YYYY HH:MM:SS') as clockin, to_char(clockout, 'DAY, DD MONTH YYYY HH:MM:SS') as clockout  FROM time WHERE userid = $1", [userid], (error, results) => {
+        if (error) {
+            throw error
+        }
+        console.log(results)
+
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+        let htmlForEmail = `<h1> ${userResults.rows[0].username} has submitted their timestamps! </h1>`
+
+        results.rows.forEach((rows) => {
+            htmlForEmail += `<p>${rows.clockin} ${rows.clockout}</p>`
+        })
+
+        const msg = {
+            to: 'abrown312@humana.com',
+            from: 'abrown.humana312@gmail.com',
+            subject: 'Timestamps',
+            text: `${userResults.rows[0].username} has submitted their timestamps`,
+            html: htmlForEmail,
+        };
+
+        sgMail.send(msg);
+
+
+        res.status(200).json(results.rows)
+    })
+
+
+
+}
+
+
+
+
 module.exports = {
 
     registerUser,
-    // deleteUser,
+    deleteUser,
     updateUser,
     login,
     getAllUsers,
@@ -206,7 +259,8 @@ module.exports = {
     clockout,
     gettime,
     postPic,
-    getPic
+    getPic,
+    email
 
 
 }

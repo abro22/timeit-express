@@ -14,42 +14,31 @@ fetch('http://localhost:3000/gettime', {
     times.value = json
 })
 
+function email() {
+    fetch('http://localhost:3000/email', {
+        headers: { "Content-Type": "application/json", "Authorization": document.cookie }
+    }).then(response => {
+        if (response.status === 200) {
+            alert("Your time has been submitted!")
+        } else {
+            alert("Something went wrong!")
+        }
+    })
 
-
+}
 
 </script>
 
 <template  >
     <div class="background">
 
-
-
-
         <div class="centerContainer">
 
-
-            <div class="clockButton">
-                <img class="pinkClock" src="https://cdn-icons-png.flaticon.com/512/4341/4341025.png" alt="pink clock">
-                <br><br>
-                <img class="blueClock" src="https://cdn-icons-png.flaticon.com/512/1584/1584942.png" alt="blue clock">
-            </div>
-
-            <div id="container">
-
-                <div class="timestamp">
+            <div class="container">
 
 
-
-                    <h1>Timestamps</h1>
-                </div>
-
-
-                <h3>Time It</h3>
-
-
-
+                <h1 class="headerStyle">Timestamps</h1>
                 <div>
-
                     <table>
                         <div class="scroll">
                             <tr>
@@ -70,20 +59,15 @@ fetch('http://localhost:3000/gettime', {
                 <br>
 
 
-                <div>
+                <div class="buttonPosition">
                     <button class="buttonColor big-btn" @click="$router.push('/welcome')">Back</button>
+
+                    <button @click="email">Send</button>
                 </div>
 
 
             </div>
 
-            <div>
-                <p id="date"></p>
-            </div>
-
-            <div>
-                <p id="time"></p>
-            </div>
 
         </div>
     </div>
@@ -112,20 +96,19 @@ table {
 
 
 .background {
-    background-color: lightpink;
+    background-color: lightseagreen;
     height: 100%;
 
 }
 
 
 
-h1 {
+.headerStyle {
     animation: glow 10s ease-in infinite;
     width: 100%;
     padding: 20px;
-    font: 60px lemon;
+    font: 5rem lemon;
     text-transform: uppercase;
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -133,6 +116,19 @@ h1 {
 
     color: #f0edaa;
 
+    transform:
+        perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+    /* opacity: 0.5; */
+    transition: 0.2s ease all;
+
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+        /* filter: drop-shadow(); */
+        opacity: 1;
+
+    }
 }
 
 @keyframes glow {
@@ -162,21 +158,21 @@ img {
 
 }
 
-#container {
-    font-family: 'Lemon', serif;
+.container {
+    margin-bottom: 20%;
+    box-shadow: 15px 15px black;
 
+    font-family: "lemon";
     height: 80vh;
     width: 50vw;
     background-color: #4169e1;
-    display: flex;
+    display: flex inline;
     flex-direction: column;
     justify-content: center;
 
     align-items: center;
     border-radius: 20%;
-    border: 10px solid black;
-
-
+    border: 6px solid black;
     background-image: url(https://cdn.pixabay.com/photo/2018/03/13/11/26/clock-3222267_1280.jpg);
 
 }
@@ -194,10 +190,17 @@ img {
     justify-content: center;
 }
 
+.buttonPosition {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 2%;
+
+}
+
 .buttonColor {
     size: 30px;
-    background-color: lightpink;
-    color: white;
+
+
     /* background-image: linear-gradient(to right, #f0edaa, pink); */
     text-align: center;
     border-radius: 5px;
@@ -212,12 +215,17 @@ button {
     font: 20px lemon;
     text-transform: uppercase;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    color: white;
 
-    color: #f0edaa;
+    background-color: #4169e1;
+    /* background-image: linear-gradient(to right, #f0edaa, pink); */
+    text-align: center;
+    border-radius: 5px;
+    width: fit-content;
+    height: 40px;
+    border: 2px solid black;
+
+
 
 
 

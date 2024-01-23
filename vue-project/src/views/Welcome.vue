@@ -91,35 +91,21 @@ fetch('http://localhost:3000/getpic', {
 
 
                     <div class="button">
-                        <button @click="$router.push('/profile')">Profile</button>
+                        <div>
+                            <button @click="$router.push('/profile')">Profile</button>
+                            <button @click="$router.push('/settings')">Settings</button>
+                            <button @click="$router.push('/timestamp')">Timestamps</button>
+                        </div>
+                        <div>
+                            <button @click="clockin()">Clock In</button>
+                            <button @click="clockout()">Clock Out</button>
+                        </div>
 
 
 
 
-
-                        <button @click="$router.push('/settings')">Settings</button>
-                        <button @click="$router.push('/timestamp')">Timestamps</button>
+                        <button @click="$router.push('/')">Logout</button>
                     </div>
-
-
-                    <br>
-                    <br>
-                    <br>
-                    <br><br>
-
-                    <div class="clockButtons">
-                        <button @click="clockin()">Clock In</button>
-                        <button @click="clockout()">Clock Out</button>
-                    </div>
-                </div>
-
-                <div>
-                    <p id="punch"></p>
-                </div>
-                <br>
-
-                <div>
-                    <button @click="$router.push('/')">Logout</button>
                 </div>
 
                 <!-- 
@@ -140,11 +126,27 @@ fetch('http://localhost:3000/getpic', {
 
 .headerStyle {
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     animation: glow 10s ease-in infinite;
     width: 70%;
-    font: 4rem lemon;
+    font: 6rem lemon;
     text-transform: uppercase;
-    color: #f0edaa
+    color: #f0edaa;
+
+    transform: perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+
+    transition: 0.2s ease all;
+
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+
+        opacity: 1;
+    }
 }
 
 @keyframes glow {

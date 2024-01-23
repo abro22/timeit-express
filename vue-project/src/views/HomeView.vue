@@ -89,9 +89,21 @@ function login() {
   animation: glow 10s ease-in infinite;
   width: 70%;
   /* padding: 20px; */
-  font: 6rem lemon;
+  font: 8rem lemon;
   text-transform: uppercase;
-  color: #f0edaa
+  color: #f0edaa;
+
+  transform: perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+  filter: drop-shadow();
+
+  transition: 0.2s ease all;
+
+  &:hover {
+    transform:
+      perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+
+    opacity: 1;
+  }
 }
 
 

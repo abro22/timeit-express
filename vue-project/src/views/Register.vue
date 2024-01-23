@@ -15,7 +15,7 @@ function register() {
 
     fetch("http://localhost:3000/register",
         {
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", "Authorization": document.cookie },
             body: JSON.stringify(reqBody),
             method: "POST"
         })
@@ -46,8 +46,8 @@ function register() {
 
             <div class="container">
 
-                <div class="headerStyle">
-                    <h1>Register</h1>
+                <div>
+                    <h1 class="headerStyle">Register</h1>
                 </div>
 
 
@@ -60,6 +60,8 @@ function register() {
                     <input v-model="username" type="text" placeholder="username">
                     <input v-model="password" type="text" placeholder="password">
                 </div>
+
+                <br><br>
 
                 <div class="buttonPosition">
                     <button @click="register">Register</button>
@@ -96,7 +98,8 @@ function register() {
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     animation: glow 10s ease-in infinite;
     width: 70%;
     font: 6rem lemon;

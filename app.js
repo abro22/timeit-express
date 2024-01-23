@@ -1,8 +1,14 @@
 require('dotenv').config()
+const sgMail = require('@sendgrid/mail');
+
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+
 
 const express = require('express')
 const mongoose = require('mongoose')
 const queries = require('./queries.js')
+
+
 
 const app = express()
 const tokenManager = require('./tokenmanager.js')
@@ -28,7 +34,7 @@ mongoose.connect(dbString)
 const database = mongoose.connection
 
 database.on('error', (error) => {
-    console.log(error)
+    console.log('database error', error)
 })
 
 database.once('connected', () => {
@@ -36,7 +42,7 @@ database.once('connected', () => {
 })
 
 
-// app.delete("/deleteuser", tokenManager.authenticateToken, queries.deleteUser)
+app.delete("/deleteuser", tokenManager.authenticateToken, queries.deleteUser)
 
 app.put("/updateuser", tokenManager.authenticateToken, queries.updateUser)
 
@@ -49,6 +55,11 @@ app.get("/getpic", tokenManager.authenticateToken, queries.getPic)
 app.post("/clockout", tokenManager.authenticateToken, queries.clockout)
 
 app.get("/gettime", tokenManager.authenticateToken, queries.gettime)
+
+app.post("/register", queries.registerUser)
+
+app.get("/email", tokenManager.authenticateToken, queries.email)
+
 
 
 
