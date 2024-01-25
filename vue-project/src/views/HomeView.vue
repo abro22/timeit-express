@@ -65,10 +65,9 @@ function login() {
           <input v-model="password" type="text" placeholder="password">
         </div>
         <br><br>
+
         <div class="buttonPosition">
           <button @click="login">Login</button>
-
-
           <button @click="$router.push('/register')">Register</button>
         </div>
 

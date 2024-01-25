@@ -86,26 +86,28 @@ fetch('http://localhost:3000/getpic', {
                 <img :src=profilepic class="profilepic">
 
                 <div class="center">
+
                     <h1 class="headerStyle">Welcome</h1>
 
 
-
-                    <div class="button">
-                        <div>
-                            <button @click="$router.push('/profile')">Profile</button>
-                            <button @click="$router.push('/settings')">Settings</button>
-                            <button @click="$router.push('/timestamp')">Timestamps</button>
-                        </div>
-                        <div>
-                            <button @click="clockin()">Clock In</button>
-                            <button @click="clockout()">Clock Out</button>
-                        </div>
-
-
-
-
-                        <button @click="$router.push('/')">Logout</button>
+                    <div class="buttonPosition">
+                        <button @click="$router.push('/profile')">Profile</button>
+                        <button @click="$router.push('/settings')">Settings</button>
+                        <button @click="$router.push('/timestamp')">Timestamps</button>
                     </div>
+                    <br>
+                    <br>
+
+                    <div class="clockButtons">
+                        <button @click="clockin()">ClockIn</button>
+                        <button @click="clockout()">ClockOut</button>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <button @click="$router.push('/')">Logout</button>
+
                 </div>
 
                 <!-- 
@@ -170,13 +172,14 @@ fetch('http://localhost:3000/getpic', {
 }
 
 .profilepic {
-    height: 5rem;
-    width: 5rem;
+    height: 8rem;
+    width: 8rem;
     display: flex;
     /* padding-left: 60%; */
     border-radius: 50px;
     border: 4px solid white;
     justify-content: right;
+    background-color: white;
 
 }
 
@@ -194,18 +197,28 @@ button {
     text-align: center;
     border-radius: 5px;
     background-color: #4169e1;
-    width: fit-content;
+
     height: 40px;
     border: 2px solid black;
 
 
 }
 
+.buttonPosition {
+    display: flex;
+    justify-content: center;
+    gap: 2%;
+
+}
+
+
 .clockButtons {
     display: flex;
-    flex-direction: column;
-    gap: 20%;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
+    gap: 10%;
+
 
 }
 

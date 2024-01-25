@@ -46,9 +46,9 @@ function register() {
 
             <div class="container">
 
-                <div>
-                    <h1 class="headerStyle">Register</h1>
-                </div>
+
+                <h1 class="headerStyle">Register</h1>
+
 
 
                 <h1 class="header2">Create User</h1>
@@ -97,14 +97,26 @@ function register() {
 .headerStyle {
 
     display: flex;
-    flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
     animation: glow 10s ease-in infinite;
     width: 70%;
     font: 6rem lemon;
     text-transform: uppercase;
-    color: #f0edaa
+    color: #f0edaa;
+    transform: perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+
+    transition: 0.2s ease all;
+
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+
+        opacity: 1;
+    }
 }
 
 .header2 {
@@ -117,6 +129,18 @@ function register() {
     font: 2.5rem lemon;
     text-transform: uppercase;
     color: #f0edaa;
+    transform: perspective(800px) rotateY(5deg) scale(0.9) rotateX(10deg);
+    filter: drop-shadow();
+
+    transition: 0.2s ease all;
+
+    &:hover {
+        transform:
+            perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+
+        opacity: 1;
+    }
+
 }
 
 
